@@ -56,7 +56,7 @@ const Login: React.FC = () => {
             />
           </div>
           {error && <div className="text-red-500 text-sm text-center">{error}</div>}
-          <Button type="submit" className="w-full text-black">
+          <Button type="submit" className="w-full " style={{background:'#155DFC'}}>
             Login
           </Button>
         </form>
