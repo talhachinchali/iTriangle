@@ -32,12 +32,12 @@ export default function AddSupplierForm({
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent side="right" className="p-6 w-[70vw] max-w-none overflow-y-auto min-w-[70vw]">
         <SheetHeader>
-          <SheetTitle>Add Supplier</SheetTitle>
+          <SheetTitle >Add Supplier</SheetTitle>
         </SheetHeader>
         <form onSubmit={handleAddSupplier} className="space-y-6 mt-6">
 
           {/* SUPPLIER DETAILS */}
-          <h3 className="text-lg font-semibold text-blue-600">Supplier Details</h3>
+          <h3 className="text-lg font-semibold " style={{color:'oklch(34.5% 19.3% 215.3)'}}>Supplier Details</h3>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label>Supplier Type *</Label>
@@ -110,7 +110,7 @@ export default function AddSupplierForm({
           </div>
 
           {/* BUSINESS ADDRESS DETAILS */}
-          <h3 className="text-lg font-semibold text-blue-600 mt-8">Business Address Details</h3>
+          <h3 className="text-lg font-semibold mt-8" style={{color:'oklch(34.5% 19.3% 215.3)'}}>Business Address Details</h3>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label>Business Address Line 1 *</Label>
@@ -151,7 +151,7 @@ export default function AddSupplierForm({
           </div>
 
           {/* SHIPPING ADDRESS DETAILS */}
-          <h3 className="text-lg font-semibold text-blue-600 mt-8">Shipping Address Details</h3>
+          <h3 className="text-lg font-semibold  mt-8" style={{color:'oklch(34.5% 19.3% 215.3)'}}>Shipping Address Details</h3>
           <div className="flex items-center gap-4">
           {/* <Checkbox
   checked={form.sameAsBilling}
@@ -208,7 +208,7 @@ export default function AddSupplierForm({
           </div>
 
           {/* DOCUMENTS */}
-          <h3 className="text-lg font-semibold text-blue-600 mt-8">Documents</h3>
+          <h3 className="text-lg font-semibold  mt-8" style={{color:'oklch(34.5% 19.3% 215.3)'}}>Documents</h3>
           <div className="grid grid-cols-3 gap-4">
             <div>
               <Label>Upload GST *</Label>
@@ -225,7 +225,7 @@ export default function AddSupplierForm({
           </div>
 
           <SheetFooter className="mt-6">
-            <Button type="submit" style={{background:'#155DFC'}}>Add Supplier</Button>
+            <Button type="submit" style={{background:'oklch(34.5% 19.3% 215.3)'}}>Add Supplier</Button>
           </SheetFooter>
         </form>
       </SheetContent>

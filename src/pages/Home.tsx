@@ -10,6 +10,7 @@ import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetFooter
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import AddSupplierForm from "@/components/addSupplierForm"
+import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 
 const initialSuppliers = [
   { id: 1, name: "Acme Corp", email: "acme@example.com", phone: "123-456-7890", address: "123 Main St" },
@@ -45,7 +46,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold">SUPPLIER</h2>
             <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-      <Button style={{background:'#155DFC'}}>
+      <Button style={{background:'oklch(34.5% 19.3% 215.3)'}}>
   Add Supplier
 </Button>
 

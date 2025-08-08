@@ -4,6 +4,10 @@ import { AppSidebar } from "@/components/app-sidebar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ChartAreaInteractive } from "@/components/chart-area-interactive"
+import { SectionCards } from "@/components/section-cards"
+import { DataTable } from "@/components/data-table"
+import data from "./data.json"
 
 const stats = [
   { label: "Total Suppliers", value: 128 },
@@ -93,23 +97,18 @@ export default function Dashboard() {
           <SidebarTrigger />
           <h2 className="text-4xl font-bold mb-6">Dashboard</h2>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-            {stats.map((s) => (
-              <Card key={s.label}>
-                <CardHeader>
-                  <CardTitle className="text-sm text-muted-foreground">{s.label}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-semibold">{s.value}</div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-1 mb-8 w-full">
+  <SectionCards />
+  {/* <SectionCards /> */}
+</div>
+
+<div className="w-full" style={{marginBottom:'20px'
+}}>
+          <ChartAreaInteractive/>
           </div>
 
           <Card>
-            {/* <CardHeader>
-              {/* <CardTitle>Data Tables</CardTitle> */}
-            {/* </CardHeader> */}
+           
             <CardContent>
             <Tabs defaultValue={activeTab} className="w-[40%]" onValueChange={setActiveTab}>
   <TabsList className="bg-muted p-1 rounded-md flex gap-2">
@@ -132,7 +131,13 @@ export default function Dashboard() {
 
               {renderTable()}
             </CardContent>
-          </Card>
+           </Card> 
+          {/* <div className="max-w-[70%] overflow-x-auto">
+  <DataTable data={data} />
+</div> */}
+
+
+
         </main>
       </div>
     </SidebarProvider>
