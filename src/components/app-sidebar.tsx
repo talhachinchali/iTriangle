@@ -18,42 +18,38 @@ import {
 } from "@tabler/icons-react"
 
 import { NavDocuments } from "@/components/nav-documents"
+import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
+import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+ 
 } from "@/components/ui/sidebar"
 import { AudioWaveform, Command, GalleryVerticalEnd } from "lucide-react"
-import { TeamSwitcher } from "./team-switcher"
-import { useNavigate } from "react-router-dom"
-import { NavMain } from "./nav-main"
-import  DropdownMenuItem from "./ui/dropDownItem"
 
 const data = {
   user: {
-    name: "admin",
-    email: "admin@example.com",
+    name: "shadcn",
+    email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "MRP Tool",
+      name: "Acme Inc",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Production Tool",
+      name: "Acme Corp.",
       logo: AudioWaveform,
       plan: "Startup",
     },
     {
-      name: "SMT Tool",
+      name: "Evil Corp.",
       logo: Command,
       plan: "Free",
     },
@@ -66,46 +62,25 @@ const data = {
     },
     {
       title: "Suppliers",
-      url: "/",
+      url: "/suppliers",
       icon: IconListDetails,
     },
     {
       title: "Inward",
-      url: "/inward",
-      icon: IconListDetails,
+      url: "#",
+      icon: IconChartBar,
     },
     {
       title: "Quality Check",
-      url: "/quality-check",
-      icon: IconListDetails,
+      url: "#",
+      icon: IconFolder,
     },
     {
       title: "GRN",
-      url: "/grn",
-      icon: IconListDetails,
+      url: "#",
+      icon: IconUsers,
     },
-    {
-      title: "Outward",
-      url: "/outward",
-      icon: IconListDetails,
-    },
-    {
-      title: "Purchase Indent",
-      url: "/purchase-indent",
-      icon: IconListDetails,
-    },
-    {
-      title: "Product Management",
-      icon: IconFolder,
-      children: [
-        { title: "Component Type", url: "/component-type" },
-        { title: "Material Type", url: "/material-type" },
-        { title: "UOM List", url: "/uom-list" },
-        { title: "Product List", url: "/product-list" },
-      ]
-    }
-  ]
-,  
+  ],
   navClouds: [
     {
       title: "Capture",
@@ -171,57 +146,35 @@ const data = {
       icon: IconSearch,
     },
   ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
-  ],
+  // documents: [
+  //   {
+  //     name: "Data Library",
+  //     url: "#",
+  //     icon: IconDatabase,
+  //   },
+  //   {
+  //     name: "Reports",
+  //     url: "#",
+  //     icon: IconReport,
+  //   },
+  //   {
+  //     name: "Word Assistant",
+  //     url: "#",
+  //     icon: IconFileWord,
+  //   },
+  // ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const navigate = useNavigate()
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+    <Sidebar collapsible="offcanvas" {...props}>
+    <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu className="p-2">
-        {data.navMain.map((item) => (
-  <SidebarMenuItem key={item.title} className="w-full">
-    {item.children ? (
-      <DropdownMenuItem item={item} />
-    ) : (
-      <SidebarMenuButton asChild>
-        <p
-          className="flex items-center gap-2 cursor-pointer px-2 py-1 text-sm hover:bg-muted rounded"
-          onClick={() => navigate(item.url)}
-        >
-          <item.icon className="w-4 h-4" />
-          <span>{item.title}</span>
-        </p>
-      </SidebarMenuButton>
-    )}
-  </SidebarMenuItem>
-))}
-
-        </SidebarMenu>
-        {/* <NavMain items={data.navClouds} /> */}
-
+        <NavMain items={data.navMain} />
         {/* <NavDocuments items={data.documents} /> */}
-        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

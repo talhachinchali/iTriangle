@@ -1,19 +1,58 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './components/Login'
-import Home from './pages/Home'
-import Dashboard from './pages/Dashboard'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
-function App() {
+import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
+import Dashboard from "./pages/dashboard"
+import {LoginForm} from "@/components/login-form"
+import Suppliers from "./pages/suppliers"
+export default function Page() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <SidebarProvider
+        style={
+          {
+            "--sidebar-width": "calc(var(--spacing) * 72)",
+            "--header-height": "calc(var(--spacing) * 12)",
+            display:'flex',
+            alignItems:'center',
+            justifyContent:'center'
+          } as React.CSSProperties
+        }
+      >
+        <Routes>
+          {/* Dashboard page */}
+          <Route
+            path="/"
+            element={
+              <>
+                <AppSidebar variant="inset" />
+                <Dashboard />
+              </>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <>
+                <AppSidebar variant="inset" />
+                <Dashboard />
+              </>
+            }
+          />
+           <Route
+            path="/suppliers"
+            element={
+              <>
+                <AppSidebar variant="inset" />
+                <Suppliers />
+              </>
+            }
+          />
+
+          {/* Login page */}
+          <Route path="/login" element={<LoginForm />} />
+        </Routes>
+      </SidebarProvider>
+    </Router>
   )
 }
-
-export default App

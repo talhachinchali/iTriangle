@@ -1,21 +1,12 @@
-"use client"
+import { NavLink, useLocation } from "react-router-dom"
+import { type Icon } from "@tabler/icons-react"
 
-import { ChevronRight, type LucideIcon } from "lucide-react"
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
 import {
   SidebarGroup,
-  SidebarGroupLabel,
+  SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
 export function NavMain({
@@ -24,50 +15,37 @@ export function NavMain({
   items: {
     title: string
     url: string
-    icon?: LucideIcon
-    isActive?: boolean
-    items?: {
-      title: string
-      url: string
-    }[]
+    icon?: Icon
   }[]
 }) {
+  const location = useLocation()
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible
-            key={item.title}
-            asChild
-            defaultOpen={item.isActive}
-            className="group/collapsible"
-          >
-            <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
-                </SidebarMenuSub>
-              </CollapsibleContent>
-            </SidebarMenuItem>
-          </Collapsible>
-        ))}
-      </SidebarMenu>
+      <SidebarGroupContent className="flex flex-col gap-2">
+        <SidebarMenu>
+          {items.map((item) => {
+            const isActive = location.pathname === item.url
+
+            return (
+              <SidebarMenuItem key={item.title}>
+                <NavLink to={item.url} className="w-full">
+                  <SidebarMenuButton
+                    tooltip={item.title}
+                    className={`flex items-center gap-2 w-full duration-200 ease-linear
+                      ${isActive
+                        ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground"
+                        : "hover:bg-muted"}`}
+                  >
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                  </SidebarMenuButton>
+                </NavLink>
+              </SidebarMenuItem>
+            )
+          })}
+        </SidebarMenu>
+      </SidebarGroupContent>
     </SidebarGroup>
   )
 }
