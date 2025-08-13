@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
-import Dashboard from "./pages/dashboard"
+import Dashboard from "./pages/Dashboard"
 import {LoginForm} from "@/components/login-form"
 import Suppliers from "./pages/suppliers"
 export default function Page() {
